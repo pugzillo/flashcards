@@ -30,7 +30,7 @@ function DeckHome() {
   };
 
   const cardList = cards.map((card) => (
-    <Card front={card.front} back={card.back} />
+    <Card id={card.id} front={card.front} back={card.back} />
   ));
 
   if (deck) {

@@ -1,6 +1,18 @@
-import { Link } from  "react-router-dom";
+import { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { deleteCard } from "../../utils/api";
 
-function Card({ front, back }) {
+function Card({ id, front, back }) {
+  const [card, setCard] = useState({});
+
+  const history = useHistory();
+
+  const handleCardDelete = () => {
+    if (window.confirm("Delete this card?")) {
+      setCard(deleteCard(id));
+      history.go(0);
+    }
+  };
 
   return (
     <div class="card mb-3" style={{ maxWidth: "540px" }}>
@@ -14,8 +26,12 @@ function Card({ front, back }) {
           <div class="card-body">
             <p class="card-text">{back}</p>
             <p class="card-links">
-                <Link to="" class="btn btn-primary" href="#" role="button">Edit</Link>
-                <button type="button" class="btn btn-primary">Delete</button>
+              <Link to="" class="btn btn-primary" href="#" role="button">
+                Edit
+              </Link>
+              <button type="button" class="btn btn-primary" onClick={handleCardDelete}>
+                Delete
+              </button>
             </p>
           </div>
         </div>
