@@ -1,7 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { createDeck } from "../utils/api";
 
 function CreateDeck() {
+  const [deck, setDeck] = useState({});
+
+  const changeHandler = (event) => {
+    setDeck({ ...deck, [event.target.name]: event.target.value });
+  };
+
+  const history = useHistory();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    createDeck(deck); 
+    window.alert(`You created a new deck: ${deck.name}`);
+    history.push("/");
+  };
+
   return (
     <div className="container">
       <nav aria-label="breadcrumb">
@@ -20,17 +36,20 @@ function CreateDeck() {
 
       <h1>Create Deck</h1>
 
-      <form>
+      <form onSubmit={submitHandler}>
         <div class="mb-3">
           <label for="name" class="form-label">
             Name
           </label>
           <input
-            type="name"
+            type="text"
             class="form-control"
             id="name"
+            name="name"
             aria-describedby="deckName"
             placeholder="Deck Name"
+            onChange={changeHandler}
+            value={deck.name}
           ></input>
         </div>
         <div class="mb-3">
@@ -38,11 +57,14 @@ function CreateDeck() {
             Deck Description
           </label>
           <textarea
-            type="email"
+            type="text"
             class="form-control"
             id="description"
-            aria-describedby="deckName"
+            name="description"
+            aria-describedby="deckDescription"
             placeholder="Deck Description"
+            onChange={changeHandler}
+            value={deck.description}
           ></textarea>
         </div>
         <Link to="/" class="btn btn-secondary" href="#" role="button">
