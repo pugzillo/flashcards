@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 
-function Form({ deckId, deckName, deckDescription, submitHandler, changeHandler}) {
+function Form({
+  cancelLink,
+  deckName,
+  deckDescription,
+  submitHandler,
+  changeHandler,
+}) {
   return (
-    <form onSubmit={ submitHandler }>
+    <form onSubmit={submitHandler}>
       <div className="mb-3">
         <label for="name" class="form-label">
           Name
@@ -33,7 +39,12 @@ function Form({ deckId, deckName, deckDescription, submitHandler, changeHandler}
           value={deckDescription}
         ></textarea>
       </div>
-      <Link to={`/decks/${deckId}`} class="btn btn-secondary" href="#" role="button">
+      <Link
+        to={cancelLink}
+        class="btn btn-secondary"
+        href="#"
+        role="button"
+      >
         Cancel
       </Link>
       <button type="submit" class="btn btn-primary">
