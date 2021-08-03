@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 function Breadcrumb({ links }) {
+  /*
+  Takes in array of objects that is used to create links in Breadcrumb nav menu; Already includes Home.
+  */
   const linkList = links.map((link) => (
     <li className="breadcrumb-item active" aria-current="page">
       <Link to={links.dir}>{link.label}</Link>
