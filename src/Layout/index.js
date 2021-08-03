@@ -4,8 +4,8 @@ import NotFound from "./NotFound";
 import DeckList from "./Home/DeckList";
 import CreateDeck from "./CreateDeck";
 import DeckHome from "./DeckHome/DeckHome";
-import DeckEdit from "./DeckHome/DeckEdit";
-import DeckStudy from "./DeckHome/DeckStudy";
+import EditDeck from "./DeckHome/EditDeck";
+import StudyDeck from "./DeckHome/StudyDeck";
 import { Route, Switch } from "react-router-dom";
 
 function Layout() {
@@ -19,10 +19,10 @@ function Layout() {
             <CreateDeck />
           </Route>
           <Route path="/decks/:deckId/study">
-            <DeckStudy />
+            <StudyDeck />
           </Route>
           <Route path="/decks/:deckId/edit">
-            <DeckEdit />
+            <EditDeck />
           </Route>
           <Route path="/decks/:deckId">
             <DeckHome />
