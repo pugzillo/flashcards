@@ -39,12 +39,15 @@ function EditDeck() {
     { dir: "/decks/new", label: `${deck.name}` },
     { dir: "/", label: "Edit Card" },
   ];
+
+  const cancelLink = `/decks/${deckId}`;
+
   return (
     <div className="container">
       <Breadcrumb links={breadCrumbLinks} />
 
       <h1>Edit Deck</h1>
-      <Form deckId={deckId} deckName={newDeck.name} deckDescription={newDeck.description} submitHandler={submitHandler} changeHandler={changeHandler} />
+      <Form cancelLink={cancelLink} deckName={newDeck.name} deckDescription={newDeck.description} submitHandler={submitHandler} changeHandler={changeHandler} />
     </div>
   );
 }

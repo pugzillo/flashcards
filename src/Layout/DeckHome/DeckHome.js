@@ -8,12 +8,14 @@ function DeckHome() {
   const [deck, setDeck] = useState();
   const [cards, setCards] = useState([]);
 
+  // Reads deck info when deck id changes
   useEffect(() => {
     const abortController = new AbortController();
     readDeck(deckId, abortController.signal).then(setDeck);
     return () => abortController.abort();
   }, [deckId]);
 
+  //   reads card info for deck
   useEffect(() => {
     const abortController = new AbortController();
     listCards(deckId, abortController.signal).then(setCards);
@@ -25,7 +27,7 @@ function DeckHome() {
   const handleDeckDelete = () => {
     if (window.confirm("Delete this Deck?")) {
       setDeck(deleteDeck(deck.id));
-      history.push("/");
+      history.push("/"); // TODO: sends user to home that isn't refreshed with new info
     }
   };
 
@@ -37,15 +39,15 @@ function DeckHome() {
     return (
       <div className="container">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
               <Link to="/">
-                <span class="oi oi-home"></span>
+                <span className="oi oi-home"></span>
                 Home
               </Link>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              {deck.name}
+            <li className="breadcrumb-item active" aria-current="page">
+              <Link to={`/decks/${deckId}`}>{deck.name}</Link>
             </li>
           </ol>
         </nav>
@@ -54,7 +56,7 @@ function DeckHome() {
         <p>
           <Link
             to={`/decks/${deck.id}/edit`}
-            class="btn btn-primary"
+            className="btn btn-primary"
             href="#"
             role="button"
           >
@@ -62,7 +64,7 @@ function DeckHome() {
           </Link>
           <Link
             to={`/decks/${deck.id}/study`}
-            class="btn btn-primary"
+            className="btn btn-primary"
             href="#"
             role="button"
           >
@@ -70,7 +72,7 @@ function DeckHome() {
           </Link>
           <Link
             to={`/decks/${deck.id}/study`}
-            class="btn btn-primary"
+            className="btn btn-primary"
             href="#"
             role="button"
           >
@@ -78,7 +80,7 @@ function DeckHome() {
           </Link>
           <button
             type="button"
-            class="btn btn-primary"
+            className="btn btn-primary"
             onClick={handleDeckDelete}
           >
             Delete
