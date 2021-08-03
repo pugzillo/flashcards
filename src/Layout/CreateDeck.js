@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { createDeck } from "../utils/api";
+import Breadcrumb from "./Common/Breadcrumb";
 
 function CreateDeck() {
   const [deck, setDeck] = useState({});
@@ -18,26 +19,18 @@ function CreateDeck() {
     history.push("/");
   };
 
+  const breadCrumbLinks = [
+    { dir: "/decks/new", label: "Create Deck" },
+  ];
+
   return (
     <div className="container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <Link to="/">
-              <span class="oi oi-home"></span>
-              Home
-            </Link>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">
-            Create Deck
-          </li>
-        </ol>
-      </nav>
+      <Breadcrumb links={breadCrumbLinks} />
 
       <h1>Create Deck</h1>
 
       <form onSubmit={submitHandler}>
-        <div class="mb-3">
+        <div className="mb-3">
           <label for="name" class="form-label">
             Name
           </label>
