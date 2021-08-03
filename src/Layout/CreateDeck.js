@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { createDeck } from "../utils/api";
 import Breadcrumb from "./Common/Breadcrumb";
+import Form from "./Common/Form";
 
 function CreateDeck() {
   const [deck, setDeck] = useState({});
@@ -23,13 +24,17 @@ function CreateDeck() {
     { dir: "/decks/new", label: "Create Deck" },
   ];
 
+  const cancelLink = "/"; 
+
   return (
     <div className="container">
       <Breadcrumb links={breadCrumbLinks} />
 
       <h1>Create Deck</h1>
 
-      <form onSubmit={submitHandler}>
+      <Form cancelLink={cancelLink} deckName={deck.name} deckDescription={deck.description} submitHandler={submitHandler} changeHandler={changeHandler} />
+
+      {/* <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label for="name" class="form-label">
             Name
@@ -66,7 +71,7 @@ function CreateDeck() {
         <button type="submit" class="btn btn-primary">
           Submit
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }
