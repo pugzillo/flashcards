@@ -1,7 +1,7 @@
 import FlipCardButtons from "./FlipCardButtons";
 
 function FlipCard({
-  id,
+  currentCard,
   length,
   front,
   back,
@@ -17,11 +17,10 @@ function FlipCard({
     text = back;
   }
 
-
   return (
     <div className="card" style={{ width: "540px" }}>
       <div className="card-body">
-        <h5 className="card-title">{`Card ${id} of ${length}`}</h5>
+        <h5 className="card-title">{`Card ${currentCard} of ${length}`}</h5>
         <p className="card-text">{text}</p>
         <FlipCardButtons orientation={orientation} HandleFlip={HandleFlip} HandleNext={HandleNext} />
       </div>
