@@ -71,7 +71,7 @@ function DeckHome() {
             Study
           </Link>
           <Link
-            to={`/decks/${deck.id}/study`}
+            to={`/decks/${deck.id}/cards/new`}
             className="btn btn-primary"
             href="#"
             role="button"
