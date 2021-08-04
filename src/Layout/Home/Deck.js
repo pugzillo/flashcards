@@ -3,18 +3,16 @@ import { Link, useHistory } from "react-router-dom";
 import { deleteDeck, listCards } from "../../utils/api";
 
 function Deck({ id, deck, description }) {
-  const [deckState, setDeckState] = useState([]);
   const [cardCount, setCardCount] = useState(0);
   const history = useHistory();
 
   useEffect(() => {
-    listCards(id).then((cards)=> setCardCount(cards.length));
-  }); 
-
+    listCards(id).then((cards) => setCardCount(cards.length));
+  });
 
   const handleDeckDelete = () => {
-    if (window.confirm("Delete this Deck?")) {
-      setDeckState(deleteDeck(id));
+    if (window.confirm("Are you sure you want to delete this deck?")) {
+      deleteDeck(id);
       history.go(0);
     }
   };
