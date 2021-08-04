@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import CardForm from "../Common/CardForm";
 import Breadcrumb from "../Common/Breadcrumb";
-import { readDeck } from "../../utils/api";
+import { readDeck, updateCard } from "../../utils/api";
 
 function AddCard() {
   const { deckId } = useParams();
-  const [deck, setDeck] = useState();
+  const [deck, setDeck] = useState({});
+  const [card, setCard] = useState({});
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -14,7 +15,17 @@ function AddCard() {
     return () => abortController.abort();
   }, [deckId]);
 
-  console.log(deck)
+  const changeHandler = (event) => {
+    setCard({ ...card, [event.target.name]: event.target.value });
+  };
+
+  const history = useHistory(); 
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    updateCard(deckId, card);
+    history.go(0); 
+  };
 
   const breadCrumbLinks = [
     { dir: "/decks/new", label: `${deck.name}` },
@@ -24,6 +35,14 @@ function AddCard() {
   return (
     <div className="container">
       <Breadcrumb links={breadCrumbLinks} />
+      <h1>{`${deck.name}: Add Card`}</h1>
+      <CardForm
+        submitHandler={submitHandler}
+        changeHandler={changeHandler}
+        front={card.front}
+        back={card.back}
+        cancelLink={`/decks/${deckId}`}
+      />
     </div>
   );
 }
