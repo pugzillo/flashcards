@@ -4,16 +4,18 @@ import Deck from "./Deck";
 import { listDecks } from "../../utils/api";
 
 function DeckList() {
+  /* Home Page */
   const [decks, setDecks] = useState([]);
 
   useEffect(() => {
     const abortController = new AbortController();
-    listDecks(abortController.signal).then(setDecks);
+    listDecks(abortController.signal).then(setDecks); // retrieves array of decks from db
     return () => abortController.abort();
-  }, []);
+  }, [decks]);
 
+  // Creates Deck component for each deck
   const list = decks.map((deck) => (
-    <Deck id={deck.id} deck={deck.name} description={deck.description} />
+    <Deck id={deck.id} deck={deck} name={deck.name} description={deck.description} />
   ));
 
   return (
