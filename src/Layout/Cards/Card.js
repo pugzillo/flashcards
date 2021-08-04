@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteCard } from "../../utils/api";
 
 function Card({ id, front, back, deckId }) {
-  const [card, setCard] = useState({});
 
   const history = useHistory();
 
   const handleCardDelete = () => {
     if (window.confirm("Delete this card?")) {
-      deleteCard(id).then(setCard);
+      deleteCard(id);
       history.go(0);
     }
   };
