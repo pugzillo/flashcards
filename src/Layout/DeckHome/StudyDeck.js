@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { readDeck, listCards } from "../../utils/api";
+import { readDeck } from "../../utils/api";
 import FlipCard from "../Cards/FlipCard";
 
 function DeckStudy() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({});
-  const [cards, setCards] = useState([]);
+  let cards = []; 
+
+  if (deck.cards) {
+    cards = deck.cards; 
+  };
 
   const [currentCard, setCurrentCard] = useState(0);
   const [orientation, setOrientation] = useState("front");
@@ -19,13 +23,6 @@ function DeckStudy() {
     return () => abortController.abort();
   }, [deckId]);
 
-  // Reads cards within deck
-  useEffect(() => {
-    const abortController = new AbortController();
-    listCards(deckId, abortController.signal).then(setCards);
-    return () => abortController.abort();
-  }, [deckId]);
-
   const HandleFlip = () => {
     if (orientation === "front") {
       setOrientation("back");
@@ -35,7 +32,7 @@ function DeckStudy() {
   }; 
 
   const HandleNext = () => {
-    if (currentCard+1 === cards.length && window.confirm("Restart cards? Click 'cancel' to return to the homepage")){
+    if (currentCard + 1 === cards.length && window.confirm("Restart cards? Click 'cancel' to return to the homepage")){
       history.push('/');
     }
     setCurrentCard(currentCard+1); 
