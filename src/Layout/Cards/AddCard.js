@@ -38,6 +38,7 @@ function AddCard() {
       <Breadcrumb links={breadCrumbLinks} />
       <h1>{`${deck.name}: Add Card`}</h1>
       <CardForm
+        type="add"
         submitHandler={submitHandler}
         changeHandler={changeHandler}
         front={card.front}

@@ -25,8 +25,9 @@ function EditCard() {
     }
   }, [cardId]);
 
-  const changeHandler = (event) => {
-    setCard({ ...card, [event.target.name]: event.target.value });
+  const changeHandler = ({ target }) => {
+    setCard({ ...card, [target.id]: target.value });
+    console.log(target.value);
   };
 
   const history = useHistory();
@@ -48,12 +49,11 @@ function EditCard() {
       <Breadcrumb links={breadCrumbLinks} />
       <h1>Edit Card</h1>
       <CardForm
+        type="edit"
         submitHandler={submitHandler}
         changeHandler={changeHandler}
         front={card.front}
         back={card.back}
-        frontPlaceHolder={card.front}
-        backPlaceHolder={card.back}
         cancelLink={`/decks/${deckId}`}
       />
     </div>
