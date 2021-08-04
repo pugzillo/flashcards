@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import { readDeck, deleteDeck, listCards } from "../../utils/api";
 import Card from "../Cards/Card";
@@ -32,7 +32,7 @@ function DeckHome() {
   };
 
   const cardList = cards.map((card) => (
-    <Card id={card.id} front={card.front} back={card.back} />
+    <Card id={card.id} front={card.front} back={card.back} deckId={deckId} />
   ));
 
   if (deck) {

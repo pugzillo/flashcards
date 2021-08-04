@@ -1,3 +1,4 @@
+import React from "react"; 
 import FlipCardButtons from "./FlipCardButtons";
 
 function FlipCard({

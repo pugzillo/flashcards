@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import CardForm from "../Common/CardForm";
 import Breadcrumb from "../Common/Breadcrumb";
-import { readDeck, updateCard } from "../../utils/api";
+import { createCard, readDeck } from "../../utils/api";
 
 function AddCard() {
   const { deckId } = useParams();
@@ -23,7 +23,8 @@ function AddCard() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    updateCard(deckId, card);
+    createCard(deckId, card);
+    window.alert(`You created a new card`);
     history.go(0); 
   };
 
@@ -41,6 +42,8 @@ function AddCard() {
         changeHandler={changeHandler}
         front={card.front}
         back={card.back}
+        frontPlaceHolder="Front side of Card"
+        backPlaceHolder="Back side of Card"
         cancelLink={`/decks/${deckId}`}
       />
     </div>

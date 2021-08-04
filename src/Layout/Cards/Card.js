@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteCard } from "../../utils/api";
 
-function Card({ id, front, back }) {
+function Card({ id, front, back, deckId }) {
   const [card, setCard] = useState({});
 
   const history = useHistory();
@@ -26,7 +26,7 @@ function Card({ id, front, back }) {
           <div className="card-body">
             <p className="card-text">{back}</p>
             <p className="card-links">
-              <Link to="" className="btn btn-primary" href="#" role="button">
+              <Link to={`/decks/${deckId}/cards/${id}/edit`} className="btn btn-primary" href="#" role="button">
                 Edit
               </Link>
               <button type="button" className="btn btn-primary" onClick={handleCardDelete}>

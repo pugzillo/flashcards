@@ -1,3 +1,5 @@
+import React from "react";
+
 function FlipCardButtons({ orientation, HandleFlip, HandleNext}) {
     if (orientation === "back") {
       return (

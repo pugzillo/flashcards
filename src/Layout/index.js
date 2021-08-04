@@ -17,14 +17,17 @@ function Layout() {
       <div className="container">
         {/* TODO: Implement the screen starting here */}
         <Switch>
+          <Route exact path="/">
+            <DeckList />
+          </Route>
+          <Route path="/decks/new">
+            <CreateDeck />
+          </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
             <EditCard />
           </Route>
           <Route path="/decks/:deckId/cards/new">
             <AddCard />
-          </Route>
-          <Route path="/decks/new">
-            <CreateDeck />
           </Route>
           <Route path="/decks/:deckId/study">
             <StudyDeck />
@@ -34,9 +37,6 @@ function Layout() {
           </Route>
           <Route path="/decks/:deckId">
             <DeckHome />
-          </Route>
-          <Route path="/">
-            <DeckList />
           </Route>
           <Route>
             <NotFound />

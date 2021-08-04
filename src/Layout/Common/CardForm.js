@@ -1,42 +1,43 @@
+import React from "react"; 
 import { Link } from "react-router-dom";
 
-function CardForm({ submitHandler, changeHandler, front, back, cancelLink }) {
+function CardForm({ submitHandler, changeHandler, front, back, frontPlaceHolder, backPlaceHolder, cancelLink }) {
   return (
     <form onSubmit={submitHandler}>
-      <div class="mb-3">
-        <label for="Front" class="form-label">
+      <div className="mb-3">
+        <label for="Front" className="form-label">
           Front
         </label>
         <textarea
           type="text"
-          class="form-control"
+          className="form-control"
           id="Front"
           name="Front"
           aria-describedby="Front"
-          placeholder="Front side of Card"
+          placeholder={frontPlaceHolder}
           onChange={changeHandler}
           value={front}
         ></textarea>
       </div>
-      <div class="mb-3">
-        <label for="Back" class="form-label">
+      <div className="mb-3">
+        <label for="Back" className="form-label">
           Back
         </label>
         <textarea
           type="text"
-          class="form-control"
+          className="form-control"
           id="Back"
           name="Back"
           aria-describedby="Back"
-          placeholder="Back side of Card"
+          placeholder={backPlaceHolder}
           onChange={changeHandler}
-          value={front}
+          value={back}
         ></textarea>
       </div>
-      <Link to={cancelLink} class="btn btn-secondary" href="#" role="button">
+      <Link to={cancelLink} className="btn btn-secondary" href="#" role="button">
         Cancel
       </Link>
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" className="btn btn-primary">
         Submit
       </button>
     </form>
