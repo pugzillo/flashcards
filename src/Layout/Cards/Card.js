@@ -2,14 +2,14 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteCard } from "../../utils/api";
 
-function Card({ id, front, back, deckId }) {
-
+function Card({ card, deckId }) {
+  /* Card w/front and back text on display; Used for Deck Homepage(DeckHome.js) */
   const history = useHistory();
 
   const handleCardDelete = () => {
     if (window.confirm("Delete this card?")) {
-      deleteCard(id);
-      history.go(0);
+      deleteCard(card.id);
+      history.go(0); // refresh page after deletion
     }
   };
 
@@ -18,17 +18,26 @@ function Card({ id, front, back, deckId }) {
       <div className="row g-0">
         <div className="col-md-6">
           <div className="card-body">
-            <p className="card-text">{front}</p>
+            <p className="card-text">{card.front}</p>
           </div>
         </div>
         <div className="col-md-6">
           <div className="card-body">
-            <p className="card-text">{back}</p>
+            <p className="card-text">{card.back}</p>
             <p className="card-links">
-              <Link to={`/decks/${deckId}/cards/${id}/edit`} className="btn btn-primary" href="#" role="button">
+              <Link
+                to={`/decks/${deckId}/cards/${card.id}/edit`}
+                className="btn btn-primary"
+                href="#"
+                role="button"
+              >
                 Edit
               </Link>
-              <button type="button" className="btn btn-primary" onClick={handleCardDelete}>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={handleCardDelete}
+              >
                 Delete
               </button>
             </p>
