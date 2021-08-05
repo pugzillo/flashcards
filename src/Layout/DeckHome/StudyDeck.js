@@ -4,10 +4,11 @@ import { readDeck } from "../../utils/api";
 import FlipCard from "../Cards/FlipCard";
 import Breadcrumb from "../Common/Breadcrumb";
 
-function DeckStudy() {
+function StudyDeck() {
+  /* Page for Studying cards */
   const { deckId } = useParams();
   const [deck, setDeck] = useState({});
-  let cards = [];
+  let cards = []; // Grab cards from Deck object
 
   if (deck.cards) {
     cards = deck.cards;
@@ -23,7 +24,8 @@ function DeckStudy() {
     readDeck(deckId, abortController.signal).then(setDeck);
     return () => abortController.abort();
   }, [deckId]);
-
+  
+  // Flips the card when user clicks on flip button
   const HandleFlip = () => {
     if (orientation === "front") {
       setOrientation("back");
@@ -48,6 +50,7 @@ function DeckStudy() {
   ];
 
   if (cards.length <= 2) {
+    // User not allowed to study cards if there are less than or equal to 2
     return (
       <div className="container">
         <Breadcrumb links={breadCrumbLinks} />
@@ -80,4 +83,4 @@ function DeckStudy() {
   }
 }
 
-export default DeckStudy;
+export default StudyDeck;
