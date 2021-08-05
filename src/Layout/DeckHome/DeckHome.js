@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { readDeck, deleteDeck, listCards } from "../../utils/api";
+import { readDeck, deleteDeck } from "../../utils/api";
+import Breadcrumb from "../Common/Breadcrumb";
 import Card from "../Cards/Card";
 
 function DeckHome() {
+  /* Home page for an individual deck */
   const { deckId } = useParams();
   const [deck, setDeck] = useState();
-  const [cards, setCards] = useState([]);
 
   // Reads deck info when deck id changes
   useEffect(() => {
@@ -15,42 +16,22 @@ function DeckHome() {
     return () => abortController.abort();
   }, [deckId]);
 
-  //   reads card info for deck
-  useEffect(() => {
-    const abortController = new AbortController();
-    listCards(deckId, abortController.signal).then(setCards);
-    return () => abortController.abort();
-  }, [deckId]);
-
   const history = useHistory();
 
   const handleDeckDelete = () => {
     if (window.confirm("Delete this Deck?")) {
       setDeck(deleteDeck(deck.id));
-      history.push("/"); // TODO: sends user to home that isn't refreshed with new info
+      history.push("/"); // sends user to home
     }
   };
 
-  const cardList = cards.map((card) => (
-    <Card id={card.id} front={card.front} back={card.back} deckId={deckId} />
-  ));
-
   if (deck) {
+    const breadCrumbLinks = [
+      { dir: `/decks/${deckId}`, label: `${deck.name}` },
+    ];
     return (
       <div className="container">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">
-                <span className="oi oi-home"></span>
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              <Link to={`/decks/${deckId}`}>{deck.name}</Link>
-            </li>
-          </ol>
-        </nav>
+        <Breadcrumb links={breadCrumbLinks} />
         <h1>{deck.name}</h1>
         <p>{deck.description}</p>
         <p>
@@ -90,7 +71,11 @@ function DeckHome() {
         <div className="deck-cards">
           <h1>Cards</h1>
           <div className="cards">
-            <section className="column">{cardList}</section>
+            <section className="column">
+              {deck.cards.map((card) => (
+                <Card card={card} deckId={deckId} />
+              ))}
+            </section>
           </div>
         </div>
       </div>
