@@ -20,8 +20,8 @@ function DeckList() {
 
   return (
     <div className="Home">
-      <Link to="/decks/new" class="btn btn-primary" href="#" role="button">
-        <span class="oi oi-plus"></span> Create Deck
+      <Link to="/decks/new" className="btn btn-primary" href="#" role="button">
+        <span className="oi oi-plus"></span> Create Deck
       </Link>
       <main className="container">
         <section className="column">{list}</section>
