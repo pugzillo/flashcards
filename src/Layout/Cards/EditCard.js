@@ -5,16 +5,19 @@ import Breadcrumb from "../Common/Breadcrumb";
 import { readDeck, readCard, updateCard } from "../../utils/api";
 
 function EditCard() {
+  /* Edit card from a specific deck */
   const { deckId, cardId } = useParams();
   const [deck, setDeck] = useState({});
   const [card, setCard] = useState({});
-
+  
+  // Deck information
   useEffect(() => {
     const abortController = new AbortController();
     readDeck(deckId, abortController.signal).then(setDeck);
     return () => abortController.abort();
   }, [deckId]);
 
+  // Card information
   useEffect(() => {
     const abortController = new AbortController();
     try {
@@ -27,7 +30,6 @@ function EditCard() {
 
   const changeHandler = ({ target }) => {
     setCard({ ...card, [target.id]: target.value });
-    console.log(target.value);
   };
 
   const history = useHistory();
@@ -36,7 +38,7 @@ function EditCard() {
     event.preventDefault();
     updateCard(card);
     window.alert(`You edited a card!`);
-    history.push(`/decks/${deckId}`);
+    history.push(`/decks/${deckId}`); // send user to deck page
   };
 
   const breadCrumbLinks = [
