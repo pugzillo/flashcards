@@ -11,11 +11,12 @@ function CardForm({
   backPlaceHolder,
   cancelLink,
 }) {
+  /* Form component used for both add and edit card */
   if (type === "edit") {
     return (
       <form onSubmit={submitHandler}>
         <div className="mb-3">
-          <label for="front" className="form-label">
+          <label htmlFor="front" className="form-label">
             Front
           </label>
           <textarea
@@ -24,12 +25,12 @@ function CardForm({
             id="front"
             name="front"
             aria-describedby="front"
-            onChange={changeHandler}
-            defaultValue={front}
+            onChange={changeHandler} 
+            defaultValue={front}   // Current value can be edited
           ></textarea>
         </div>
         <div className="mb-3">
-          <label for="back" className="form-label">
+          <label htmlFor="back" className="form-label">
             Back
           </label>
           <textarea
@@ -59,7 +60,7 @@ function CardForm({
   return (
     <form onSubmit={submitHandler}>
       <div className="mb-3">
-        <label for="Front" className="form-label">
+        <label htmlFor="Front" className="form-label">
           Front
         </label>
         <textarea
@@ -68,13 +69,13 @@ function CardForm({
           id="Front"
           name="Front"
           aria-describedby="Front"
-          placeholder={frontPlaceHolder}
+          placeholder={frontPlaceHolder}   // Value will disappear when user clicks in text area
           onChange={changeHandler}
           defaultValue={front}
         ></textarea>
       </div>
       <div className="mb-3">
-        <label for="Back" className="form-label">
+        <label htmlFor="Back" className="form-label">
           Back
         </label>
         <textarea
