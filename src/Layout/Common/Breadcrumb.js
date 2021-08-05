@@ -5,16 +5,16 @@ function Breadcrumb({ links }) {
   /*
   Takes in array of objects that is used to create links in Breadcrumb nav menu; Already includes Home.
   */
-  const linkList = links.map((link) => (
+  const linkList = links.map((link, index) => (
     <li className="breadcrumb-item active" aria-current="page">
-      <Link to={links.dir}>{link.label}</Link>
+      <Link to={links.dir} key={index+1}>{link.label}</Link>
     </li>
   ));
   return (
     <div className="container">
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item">
+          <li className="breadcrumb-item" key={0}>
             <Link to="/">
               <span className="oi oi-home"></span>
               Home
