@@ -10,8 +10,10 @@ function FlipCard({
   HandleFlip,
   HandleNext,
 }) {
+  /* Component for the Flip cards on the study page */
   let text = "";
 
+  // Sets the text that is showned based off the flip state
   if (orientation === "front") {
     text = front;
   } else {
