@@ -72,8 +72,8 @@ function DeckHome() {
           <h1>Cards</h1>
           <div className="cards">
             <section className="column">
-              {deck.cards.map((card) => (
-                <Card card={card} deckId={deckId} />
+              {deck.cards.map((card, index) => (
+                <Card key={card.id.toString()} card={card} deckId={deckId} />
               ))}
             </section>
           </div>
