@@ -7,7 +7,7 @@ function Breadcrumb({ links }) {
   */
   const linkList = links.map((link, index) => (
     <li className="breadcrumb-item active" aria-current="page" key={(index+1).toString()}>
-      <Link to={links.dir}>{link.label}</Link>
+      <Link to={link.dir}>{link.label}</Link>
     </li>
   ));
   return (
