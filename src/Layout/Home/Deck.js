@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteDeck } from "../../utils/api";
 
-function Deck({ key, id, deck, name, description }) {
+function Deck({ id, deck, name, description }) {
   /* Deck card component used on Home page */
   const history = useHistory();
   const cardCount = deck.cards.length;
@@ -17,7 +17,6 @@ function Deck({ key, id, deck, name, description }) {
   return (
     <div
       className="card"
-      key={key}
       style={{ width: "30rem", marginBottom: "10px", marginTop: "10px" }}
     >
       <div className="card-body">
