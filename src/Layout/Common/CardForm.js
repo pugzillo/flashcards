@@ -26,7 +26,7 @@ function CardForm({
             name="front"
             aria-describedby="front"
             onChange={changeHandler} 
-            defaultValue={front}   // Current value can be edited
+            value={front}   // Current value can be edited
           ></textarea>
         </div>
         <div className="mb-3">
@@ -40,7 +40,7 @@ function CardForm({
             name="back"
             aria-describedby="back"
             onChange={changeHandler}
-            defaultValue={back}
+            value={back}
           ></textarea>
         </div>
         <Link
@@ -71,7 +71,7 @@ function CardForm({
           aria-describedby="Front"
           placeholder={frontPlaceHolder}   // Value will disappear when user clicks in text area
           onChange={changeHandler}
-          defaultValue={front}
+          value={front}
         ></textarea>
       </div>
       <div className="mb-3">
@@ -86,7 +86,7 @@ function CardForm({
           aria-describedby="Back"
           placeholder={backPlaceHolder}
           onChange={changeHandler}
-          defaultValue={back}
+          value={back}
         ></textarea>
       </div>
       <Link
