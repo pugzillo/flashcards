@@ -15,7 +15,7 @@ function DeckList() {
 
   // Creates Deck component for each deck
   const list = decks.map((deck) => (
-    <Deck id={deck.id} deck={deck} name={deck.name} description={deck.description} />
+    <Deck key={deck.id.toString()} id={deck.id} deck={deck} name={deck.name} description={deck.description} />
   ));
 
   return (
