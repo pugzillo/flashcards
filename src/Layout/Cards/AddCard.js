@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import CardForm from "../Common/CardForm";
 import Breadcrumb from "../Common/Breadcrumb";
 import { createCard, readDeck } from "../../utils/api";
@@ -7,6 +7,7 @@ import { createCard, readDeck } from "../../utils/api";
 function AddCard() {
   /* Add new card to a deck */
   const { deckId } = useParams();
+  const url = useLocation().pathname; 
   const [deck, setDeck] = useState({});
   const [card, setCard] = useState({});
 
@@ -32,8 +33,8 @@ function AddCard() {
   };
 
   const breadCrumbLinks = [
-    { dir: "/decks/new", label: `${deck.name}` },
-    { dir: "", label: "Add Card" },
+    { dir: `/decks/${deckId}`, label: `${deck.name}` },
+    { dir: `${url}`, label: "Add Card" },
   ];
 
   return (

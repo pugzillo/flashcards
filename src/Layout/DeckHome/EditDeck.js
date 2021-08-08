@@ -6,8 +6,8 @@ import Form from "../Common/Form";
 
 function EditDeck() {
   const { deckId } = useParams();
-  const [deck, setDeck] = useState({}); // used for breadcrumb; have both so deck var can be changed separately
-  const [newDeck, setNewDeck] = useState({}); // used for form
+  const [deck, setDeck] = useState({id:"", name:"", description:"", cards:[]}); // used for breadcrumb; have both so deck var can be changed separately
+  const [newDeck, setNewDeck] = useState({id:"", name:"", description:"", cards:[]}); // used for form
 
   // Old Deck info
   useEffect(() => {
@@ -24,7 +24,7 @@ function EditDeck() {
   }, [deckId]);
 
   const changeHandler = (event) => {
-    setNewDeck({...newDeck, [event.target.name]: event.target.value });
+    setNewDeck({ ...newDeck, [event.target.name]: event.target.value });
   };
 
   const history = useHistory();
@@ -36,8 +36,8 @@ function EditDeck() {
   };
 
   const breadCrumbLinks = [
-    { dir: "/decks/new", label: `${deck.name}` },
-    { dir: "/", label: "Edit Card" },
+    { dir: `/decks/${deckId}`, label: `${deck.name}` },
+    { dir: `/decks/${deckId}/edit`, label: "Edit Deck" },
   ];
 
   const cancelLink = `/decks/${deckId}`;
@@ -47,7 +47,13 @@ function EditDeck() {
       <Breadcrumb links={breadCrumbLinks} />
 
       <h1>Edit Deck</h1>
-      <Form cancelLink={cancelLink} deckName={newDeck.name} deckDescription={newDeck.description} submitHandler={submitHandler} changeHandler={changeHandler} />
+      <Form
+        cancelLink={cancelLink}
+        deckName={newDeck.name}
+        deckDescription={newDeck.description}
+        submitHandler={submitHandler}
+        changeHandler={changeHandler}
+      />
     </div>
   );
 }
