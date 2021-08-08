@@ -38,7 +38,7 @@ function Card({ card, deckId }) {
                 className="btn btn-danger"
                 onClick={handleCardDelete}
               >
-                <span class="oi oi-trash"></span> Delete
+                <span className="oi oi-trash"></span> Delete
               </button>
             </p>
           </div>
