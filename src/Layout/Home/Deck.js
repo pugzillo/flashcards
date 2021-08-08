@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { deleteDeck } from "../../utils/api";
 
-function Deck({ id, deck, name, description }) {
+function Deck({ key, id, deck, name, description }) {
   /* Deck card component used on Home page */
   const history = useHistory();
   const cardCount = deck.cards.length;
@@ -17,6 +17,7 @@ function Deck({ id, deck, name, description }) {
   return (
     <div
       className="card"
+      key={key}
       style={{ width: "30rem", marginBottom: "10px", marginTop: "10px" }}
     >
       <div className="card-body">
@@ -26,7 +27,7 @@ function Deck({ id, deck, name, description }) {
         <p className="card-buttons">
           <Link
             to={`decks/${id}`}
-            class="btn btn-primary"
+            className="btn btn-primary"
             href="#"
             role="button"
           >
@@ -34,7 +35,7 @@ function Deck({ id, deck, name, description }) {
           </Link>
           <Link
             to={`decks/${id}/study`}
-            class="btn btn-primary"
+            className="btn btn-primary"
             href="#"
             role="button"
           >
@@ -42,7 +43,7 @@ function Deck({ id, deck, name, description }) {
           </Link>
           <Link
             to={`decks/${id}/edit`}
-            class="btn btn-primary"
+            className="btn btn-primary"
             href="#"
             role="button"
           >
@@ -50,10 +51,10 @@ function Deck({ id, deck, name, description }) {
           </Link>
           <button
             type="button"
-            class="btn btn-danger"
+            className="btn btn-danger"
             onClick={handleDeckDelete}
           >
-            <span class="oi oi-trash"></span> Delete
+            <span className="oi oi-trash"></span> Delete
           </button>
         </p>
       </div>
