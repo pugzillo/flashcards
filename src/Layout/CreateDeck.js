@@ -6,7 +6,7 @@ import Form from "./Common/Form";
 
 function CreateDeck() {
   /* Create Deck Page */
-  const [deck, setDeck] = useState({});
+  const [deck, setDeck] = useState({id:"", name:"", description:"", cards:[]});
 
   const changeHandler = (event) => {
     setDeck({ ...deck, [event.target.name]: event.target.value });
