@@ -60,30 +60,30 @@ function CardForm({
   return (
     <form onSubmit={submitHandler}>
       <div className="mb-3">
-        <label htmlFor="Front" className="form-label">
+        <label htmlFor="front" className="form-label">
           Front
         </label>
         <textarea
           type="text"
           className="form-control"
-          id="Front"
-          name="Front"
-          aria-describedby="Front"
+          id="front"
+          name="front"
+          aria-describedby="front"
           placeholder={frontPlaceHolder}   // Value will disappear when user clicks in text area
           onChange={changeHandler}
           value={front}
         ></textarea>
       </div>
       <div className="mb-3">
-        <label htmlFor="Back" className="form-label">
+        <label htmlFor="back" className="form-label">
           Back
         </label>
         <textarea
           type="text"
           className="form-control"
-          id="Back"
-          name="Back"
-          aria-describedby="Back"
+          id="back"
+          name="back"
+          aria-describedby="back"
           placeholder={backPlaceHolder}
           onChange={changeHandler}
           value={back}
